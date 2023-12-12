@@ -7,8 +7,8 @@ import React, {useState} from 'react';
 function CadastroDeSalas() {
   const [abrirPaginaDaSalas, setAbrirPaginaDaSalas] = useState(false);
   const [dadosFormulario, setDadosFormulario] = useState({
-    andar: '',
     numero: '',
+    andar: '',
     predio: '',
     numeroDeCadeiras: ''
   });
@@ -30,8 +30,8 @@ function CadastroDeSalas() {
       localStorage.setItem("salas", JSON.stringify([dadosFormulario]))
     }
     setDadosFormulario({
-      andar: '',
       numero: '',
+      andar: '',
       predio: '',
       numeroDeCadeiras: ''
     });
@@ -49,14 +49,14 @@ function CadastroDeSalas() {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit} className="CadastroDeSalas"> 
-            <Form.Group controlId="andar">
-              <Form.Label>Andar</Form.Label>
-              <Form.Control onChange={handleInputChange} name="andar" value={dadosFormulario.andar} type="number"/>
-            </Form.Group>
-            <Form.Group controlId="numero">
+          <Form.Group controlId="numero">
               <Form.Label>Número</Form.Label>
               <Form.Control onChange={handleInputChange} name="numero" value={dadosFormulario.numero} type= "number"/>
             </Form.Group>
+            <Form.Group controlId="andar">
+              <Form.Label>Andar</Form.Label>
+              <Form.Control onChange={handleInputChange} name="andar" value={dadosFormulario.andar} type="number"/>
+            </Form.Group>  
             <Form.Group controlId= "predio">
               <Form.Label>Prédio</Form.Label>
               <Form.Control onChange={handleInputChange} name="predio" value={dadosFormulario.predio} type="number"/>

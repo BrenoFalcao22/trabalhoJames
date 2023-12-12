@@ -5,29 +5,31 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React, {useState} from 'react';
 
 function CadastroCurso() {
+  //o useState abaixo vai gerenciar o estado do modal (abrirpaginadocurso) e os dados do formulário.//
   const [abrirPaginaDoCurso, setAbrirPaginaDoCurso] = useState(false);
   const [dadosFormulario, setDadosFormulario] = useState({
     nomeCurso: '',
     nomeCoordenador: '',
     dataInicio: ''
   });
-
+//O handleshow e handleclose controla a exibição e ocultação do modal.//
   const handleClose = () => setAbrirPaginaDoCurso(false);
   const handleShow = () => setAbrirPaginaDoCurso(true);
 
+  //O handleinputchange vai atualizar o estado com os valores dos campos do formulário.//
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setDadosFormulario({ ...dadosFormulario, [name]: value });
   };
 
- 
+ //O handlesubmit vai salvar os dados no localstorage ao enviar o formulário.//
  const handleSubmit = (event) => {
     event.preventDefault();
     if (localStorage.getItem('curso') != null) {
       let valorFinal = JSON.parse(localStorage.getItem('curso'))
       valorFinal.push(dadosFormulario)
       localStorage.setItem('curso', JSON.stringify(valorFinal))
-    } else {
+    } else { // Se não houver, cria uma nova entrada no localStorage//
       localStorage.setItem("curso", JSON.stringify([dadosFormulario]))
     }
     setDadosFormulario({
@@ -36,7 +38,7 @@ function CadastroCurso() {
       dataInicio: ''
     });
   };
-
+//O handlesubmit vai renderizar um botão que ao clicar vai abrir um modal com o formulário para cadastrar o curso.//
   return (
     <>
     <Button variant="primary" onClick={handleShow}>
@@ -64,10 +66,9 @@ function CadastroCurso() {
           <Button variant="primary" type="submit" >enviar</Button>
         </Form>
       </Modal.Body>
-    </Modal>
+    </Modal>  
     </>
     );
 }
 
 export default CadastroCurso;
-  
